@@ -22,6 +22,7 @@ class _LoginpageState extends State<Loginpage> {
     super.initState();
     ////////////////////////////---IAM-----////////////////////////////////////
     initialize_IAM();
+    initialize_others();
     widget.load_login_details();
   }
 

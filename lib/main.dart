@@ -46,7 +46,6 @@ Future<void> main() async {
   initialize_IAM();
 
   /// Custom initialization method for Identity and Access Management (IAM) module
-  // initialize_others();
 
   runApp(const RestartWidget(child: MyApp()));
   DesktopWindow.setMinWindowSize(const Size(360.0, 640.0));
@@ -60,7 +59,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       // home: const IAM(),
-      title: 'ERP',
+      title: 'TRAVON',
       home: const IAM(),
       initialRoute: RouteNames.IAM, // Set the initial route
       getPages: AppRoutes.routes,
