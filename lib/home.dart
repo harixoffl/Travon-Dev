@@ -164,7 +164,7 @@ class _MyHomePageState extends State<MyHomePage> {
         return Card(
           margin: const EdgeInsets.only(bottom: 8),
           child: Container(
-            decoration: BoxDecoration(color: kPrimaryLightColor, borderRadius: BorderRadius.circular(10)),
+            decoration: BoxDecoration(color: Primary_colors.Light, borderRadius: BorderRadius.circular(10)),
             child: ListTile(
               leading: CircleAvatar(backgroundImage: NetworkImage(pickup['profile_image'])),
               title: Text(pickup['name'], style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
