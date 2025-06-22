@@ -2,7 +2,9 @@ import 'package:desktop_window/desktop_window.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:travon/IAM/views/IAM.dart';
+import 'package:travon/PAGES/controllers/history_actions.dart';
 import 'package:travon/PAGES/controllers/home_actions.dart';
+import 'package:travon/PAGES/controllers/notification_actions.dart';
 import 'package:travon/ROUTES/app_routes.dart';
 import 'package:travon/ROUTES/route_names.dart';
 import 'package:travon/THEMES/style.dart';
@@ -46,13 +48,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   initialize_IAM();
-
-  /// Custom initialization method for Identity and Access Management (IAM) module
-  // initialize_others();
-
-  Get.lazyPut<HomeController>(() => HomeController());
-  Get.lazyPut<NotificationController>(() => NotificationController());
-  Get.lazyPut<HistoryController>(() => HistoryController());
+  initialize_others();
 
   runApp(const RestartWidget(child: MyApp()));
   DesktopWindow.setMinWindowSize(const Size(360.0, 640.0));

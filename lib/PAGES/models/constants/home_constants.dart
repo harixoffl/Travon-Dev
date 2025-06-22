@@ -6,12 +6,6 @@ class HomeConstants extends GetxController {
   var  pageController = PageController();
 }
 
-class NotificationConstants extends GetxController{
-  var notificationData=<Map<String, dynamic>>[].obs;
-}
 
-class HistoryConstants extends GetxController {
-  var historyData=<Map<String, dynamic>>[].obs;
 
-  
-}
+

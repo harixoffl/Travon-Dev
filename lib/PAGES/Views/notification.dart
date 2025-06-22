@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:travon/PAGES/controllers/home_actions.dart';
+
+import 'package:travon/PAGES/controllers/notification_actions.dart';
 import 'package:travon/THEMES/style.dart';
 
 
