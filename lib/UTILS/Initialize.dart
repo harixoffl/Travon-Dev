@@ -1,7 +1,9 @@
 import 'package:get/get.dart';
 import 'package:travon/API/invoker.dart';
 import 'package:travon/IAM/controllers/IAM_actions.dart';
-import 'package:travon/home/controllers/home_actions.dart';
+import 'package:travon/PAGES/controllers/history_actions.dart';
+import 'package:travon/PAGES/controllers/home_actions.dart';
+import 'package:travon/PAGES/controllers/notification_actions.dart';
 
 void initialize_IAM() {
   Get.lazyPut<IAMController>(() => IAMController());
@@ -16,4 +18,6 @@ void initialize_IAM() {
 
 void initialize_others() {
   Get.lazyPut<HomeController>(() => HomeController());
+  Get.lazyPut<HistoryController>(() => HistoryController());
+  Get.lazyPut<NotificationController>(() => NotificationController());
 }
