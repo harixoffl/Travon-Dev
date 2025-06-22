@@ -26,7 +26,7 @@ class _NavigationBarState extends State<NavigationBar> {
 
       /// PageView for content
       body: Obx(() {
-        final index = homeController.homeModel.selectedIndex.value;
+        // final index = homeController.homeModel.selectedIndex.value;
         return PageView(
           controller: homeController.homeModel.pageController,
           onPageChanged: (i) {

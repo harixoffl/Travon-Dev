@@ -13,6 +13,18 @@ class HomeController extends GetxController {
     // homeConstants.pageController.jumpToPage(index);
   }
 
+  void updateUsernameController(String value) {
+    homeModel.pagename.value = value;
+  }
+
+  void update_fromQuery(String value) {
+    homeModel.from_query.value = value;
+  }
+
+  void update_toQuery(String value) {
+    homeModel.to_query.value = value;
+  }
+
   final List<Widget> pages = [MyHomePage(), Notificationpage(), HistoryPage()];
 
   @override
