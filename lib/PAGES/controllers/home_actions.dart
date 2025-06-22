@@ -6,10 +6,10 @@ import 'package:travon/PAGES/Views/notification.dart';
 import 'package:travon/PAGES/models/constants/home_constants.dart';
 
 class HomeController extends GetxController {
-  var homeConstants = HomeConstants();
+  var homeModel = HomeModel();
 
   void changeIndex(int index) {
-    homeConstants.selectedIndex.value = index;
+    homeModel.selectedIndex.value = index;
     // homeConstants.pageController.jumpToPage(index);
   }
 
@@ -18,15 +18,12 @@ class HomeController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    homeConstants.pageController = PageController(); // initialize it
+    homeModel.pageController = PageController(); // initialize it
   }
 
   @override
   void onClose() {
-    homeConstants.pageController.dispose();
+    homeModel.pageController.dispose();
     super.onClose();
   }
 }
-
-
-

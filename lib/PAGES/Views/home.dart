@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:travon/PAGES/controllers/home_actions.dart';
 import 'package:travon/THEMES/style.dart';
 
-
 /// The main home page of the application containing a sidebar menu and dynamic content area.
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -21,10 +20,8 @@ class _MyHomePageState extends State<MyHomePage> {
     /// Add a listener to the side menu that changes the page when a menu item is selected
 
     super.initState();
-    homeController.homeConstants.pageController = PageController();
+    homeController.homeModel.pageController = PageController();
   }
-
-  
 
   @override
   Widget build(BuildContext context) {
@@ -39,10 +36,7 @@ class _MyHomePageState extends State<MyHomePage> {
               children: [
                 Container(
                   width: 300,
-                  decoration: BoxDecoration(
-                    color: Primary_colors.Light,
-                    borderRadius: BorderRadius.circular(8),
-                  ),
+                  decoration: BoxDecoration(color: Primary_colors.Light, borderRadius: BorderRadius.circular(8)),
                   child: Padding(
                     padding: const EdgeInsets.only(),
                     child: Row(
@@ -53,30 +47,20 @@ class _MyHomePageState extends State<MyHomePage> {
                             child: TextFormField(
                               // controller: _fromController,
                               textAlign: TextAlign.center,
-                              style: const TextStyle(
-                                fontSize: 10,
-                                color: Colors.white,
-                              ),
+                              style: const TextStyle(fontSize: 10, color: Colors.white),
                               decoration: InputDecoration(
                                 filled: true,
                                 fillColor: Colors.transparent,
                                 focusedBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(8),
-                                  borderSide: const BorderSide(
-                                    color: Colors.transparent,
-                                  ),
+                                  borderSide: const BorderSide(color: Colors.transparent),
                                 ),
                                 enabledBorder: OutlineInputBorder(
-                                  borderSide: const BorderSide(
-                                    color: Colors.transparent,
-                                  ),
+                                  borderSide: const BorderSide(color: Colors.transparent),
                                   borderRadius: BorderRadius.circular(8),
                                 ),
                                 hintText: 'From',
-                                hintStyle: const TextStyle(
-                                  fontSize: 10,
-                                  color: Colors.grey,
-                                ),
+                                hintStyle: const TextStyle(fontSize: 10, color: Colors.grey),
                                 border: const OutlineInputBorder(),
                               ),
                               onChanged: (value) {
@@ -95,30 +79,20 @@ class _MyHomePageState extends State<MyHomePage> {
                             child: TextFormField(
                               // controller: _toController,
                               textAlign: TextAlign.center,
-                              style: const TextStyle(
-                                fontSize: 10,
-                                color: Colors.white,
-                              ),
+                              style: const TextStyle(fontSize: 10, color: Colors.white),
                               decoration: InputDecoration(
                                 filled: true,
                                 fillColor: Colors.transparent,
                                 focusedBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(8),
-                                  borderSide: const BorderSide(
-                                    color: Colors.transparent,
-                                  ),
+                                  borderSide: const BorderSide(color: Colors.transparent),
                                 ),
                                 enabledBorder: OutlineInputBorder(
-                                  borderSide: const BorderSide(
-                                    color: Colors.transparent,
-                                  ),
+                                  borderSide: const BorderSide(color: Colors.transparent),
                                   borderRadius: BorderRadius.circular(8),
                                 ),
                                 hintText: 'To',
-                                hintStyle: const TextStyle(
-                                  fontSize: 10,
-                                  color: Colors.grey,
-                                ),
+                                hintStyle: const TextStyle(fontSize: 10, color: Colors.grey),
                                 border: const OutlineInputBorder(),
                               ),
                               onChanged: (value) {
@@ -139,17 +113,13 @@ class _MyHomePageState extends State<MyHomePage> {
                   onPressed: () {
                     Scaffold.of(context).openEndDrawer();
                   },
-                  icon: const Icon(
-                    Icons.filter_alt_outlined,
-                    color: Primary_colors.Color1,
-                  ),
+                  icon: const Icon(Icons.filter_alt_outlined, color: Primary_colors.Color1),
                 ),
               ],
             ),
           ],
         ),
       ),
-     
     );
   }
 }

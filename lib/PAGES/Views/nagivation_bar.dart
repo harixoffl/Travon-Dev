@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:travon/PAGES/controllers/home_actions.dart';
 import 'package:travon/THEMES/style.dart';
-
 
 class NavigationBar extends StatefulWidget {
   const NavigationBar({super.key});
@@ -28,11 +26,11 @@ class _NavigationBarState extends State<NavigationBar> {
 
       /// PageView for content
       body: Obx(() {
-        final index = homeController.homeConstants.selectedIndex.value;
+        final index = homeController.homeModel.selectedIndex.value;
         return PageView(
-          controller: homeController.homeConstants.pageController,
+          controller: homeController.homeModel.pageController,
           onPageChanged: (i) {
-            homeController.homeConstants.selectedIndex.value = i;
+            homeController.homeModel.selectedIndex.value = i;
           },
           children: homeController.pages,
         );
@@ -41,13 +39,13 @@ class _NavigationBarState extends State<NavigationBar> {
       /// Bottom Navigation Bar
       bottomNavigationBar: Obx(
         () => BottomNavigationBar(
-          currentIndex: homeController.homeConstants.selectedIndex.value,
+          currentIndex: homeController.homeModel.selectedIndex.value,
           onTap: (index) {
             homeController.changeIndex(index);
 
             WidgetsBinding.instance.addPostFrameCallback((_) {
-              if (homeController.homeConstants.pageController.hasClients) {
-                homeController.homeConstants.pageController.jumpToPage(index);
+              if (homeController.homeModel.pageController.hasClients) {
+                homeController.homeModel.pageController.jumpToPage(index);
               }
             });
           },
@@ -57,18 +55,9 @@ class _NavigationBarState extends State<NavigationBar> {
           selectedLabelStyle: const TextStyle(fontSize: 10),
           unselectedLabelStyle: const TextStyle(fontSize: 10),
           items: const [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home, size: 20),
-              label: 'Home',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.notifications, size: 20),
-              label: 'Notification',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.history, size: 20),
-              label: 'History',
-            ),
+            BottomNavigationBarItem(icon: Icon(Icons.home, size: 20), label: 'Home'),
+            BottomNavigationBarItem(icon: Icon(Icons.notifications, size: 20), label: 'Notification'),
+            BottomNavigationBarItem(icon: Icon(Icons.history, size: 20), label: 'History'),
           ],
         ),
       ),
