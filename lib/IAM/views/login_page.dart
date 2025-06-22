@@ -22,7 +22,6 @@ class _LoginpageState extends State<Loginpage> {
     super.initState();
     ////////////////////////////---IAM-----////////////////////////////////////
     initialize_IAM();
-    initialize_others();
     widget.load_login_details();
   }
 
@@ -189,7 +188,7 @@ class _LoginpageState extends State<Loginpage> {
                           onPressed: () async {
                             if (formKey1.currentState?.validate() ?? false) {
                               SharedPreferences prefs = await SharedPreferences.getInstance();
-                              // initialize_others();
+
                               widget.Login(context);
 
                               widget.actionRememberMe(prefs.getBool('remember_me')!);

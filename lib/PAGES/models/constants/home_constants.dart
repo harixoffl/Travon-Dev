@@ -1,18 +1,10 @@
-// import 'package:flutter/widgets.dart';
-// import 'package:get/get.dart';
-
-// class HomeModel extends GetxController {
-//   var selectedIndex = 0.obs;
-//   var  pageController = PageController();
-// }
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class HomeModel {
-  var selectedIndex = 0.obs;
-  var pageController = PageController();
-  final pagename = "Login".obs;
+  // var selectedIndex = 0.obs;
+  // var pageController = PageController();
+  // final pagename = "Login".obs;
   // Controllers remain normal, but their values can be updated through observers if needed
   final TextEditingController dateController = TextEditingController();
   final TextEditingController fromController = TextEditingController();

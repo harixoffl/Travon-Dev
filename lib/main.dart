@@ -42,9 +42,9 @@ class _RestartWidgetState extends State<RestartWidget> {
 /// The main entry point of the application
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
-  initialize_IAM();
   initialize_others();
+  initialize_IAM();
+  // initialize_others();
 
   runApp(const RestartWidget(child: MyApp()));
   DesktopWindow.setMinWindowSize(const Size(360.0, 640.0));

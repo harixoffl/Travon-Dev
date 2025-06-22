@@ -8,22 +8,30 @@ import 'package:travon/PAGES/models/constants/home_constants.dart';
 class HomeController extends GetxController {
   var homeModel = HomeModel();
 
-  void changeIndex(int index) {
-    homeModel.selectedIndex.value = index;
-    // homeConstants.pageController.jumpToPage(index);
+  // void changeIndex(int index) {
+  //   homeModel.selectedIndex.value = index;
+  //   // homeConstants.pageController.jumpToPage(index);
+  // }
+
+  void update_fromQuery(String value) {
+    homeModel.from_query.value = value;
+  }
+
+  void update_toQuery(String value) {
+    homeModel.to_query.value = value;
   }
 
   final List<Widget> pages = [MyHomePage(), Notificationpage(), HistoryPage()];
 
-  @override
-  void onInit() {
-    super.onInit();
-    homeModel.pageController = PageController(); // initialize it
-  }
+  // @override
+  // void onInit() {
+  //   super.onInit();
+  //   homeModel.pageController = PageController(); // initialize it
+  // }
 
-  @override
-  void onClose() {
-    homeModel.pageController.dispose();
-    super.onClose();
-  }
+  // @override
+  // void onClose() {
+  //   homeModel.pageController.dispose();
+  //   super.onClose();
+  // }
 }

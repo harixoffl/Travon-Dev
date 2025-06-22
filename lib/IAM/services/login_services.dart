@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:travon/ROUTES/route_names.dart';
+import 'package:travon/PAGES/Views/nagivation_bar.dart';
 
 import '../../API/invoker.dart';
 import '../../COMPONENTS-/Basic_DialogBox.dart';
@@ -15,7 +15,7 @@ mixin LoginServices {
   void Login(context) async {
     try {
       await Future.delayed(const Duration(seconds: 2));
-      Get.toNamed(RouteNames.home);
+      Get.to(() => Bottom_Bar());
 
       // Login_Request requestBody = Login_Request(username: loginController.loginModel.userController.value.text, password: loginController.loginModel.passwordController.value.text);
 

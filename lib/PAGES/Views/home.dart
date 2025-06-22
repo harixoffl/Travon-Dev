@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:travon/PAGES/controllers/home_actions.dart';
+import 'package:travon/PAGES/services/home_service.dart';
 import 'package:travon/THEMES/style.dart';
-import 'package:travon/home/controllers/home_actions.dart';
-import 'package:travon/home/services/home_service.dart';
 
 /// The main home page of the application containing a sidebar menu and dynamic content area.
 class MyHomePage extends StatefulWidget with HomeService {
@@ -13,18 +13,18 @@ class MyHomePage extends StatefulWidget with HomeService {
 
 class _MyHomePageState extends State<MyHomePage> {
   final HomeController homeController = Get.find<HomeController>();
-  PageController pageController = PageController();
+  // PageController pageController = PageController();
 
   bool showfull = true;
   @override
   void initState() {
     /// Add a listener to the side menu that changes the page when a menu item is selected
-    homeController.HomeModel.filteredPickupList.value = homeController.HomeModel.pickuplist;
-    homeController.HomeModel.filteredDropList.value = List.from(homeController.HomeModel.droplist);
+    homeController.homeModel.filteredPickupList.value = homeController.homeModel.pickuplist;
+    homeController.homeModel.filteredDropList.value = List.from(homeController.homeModel.droplist);
 
     // Listen for changes in the "From" TextFormField
-    homeController.HomeModel.fromController.addListener(() {
-      widget.filterLists();
+    homeController.homeModel.fromController.addListener(() {
+      widget.filterLists(homeController);
     });
     super.initState();
   }
@@ -51,7 +51,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         child: SizedBox(
                           height: 40,
                           child: TextFormField(
-                            controller: homeController.HomeModel.fromController,
+                            controller: homeController.homeModel.fromController,
                             textAlign: TextAlign.center,
                             style: const TextStyle(fontSize: 10, color: Colors.white),
                             decoration: InputDecoration(
@@ -71,7 +71,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             ),
                             onChanged: (value) {
                               homeController.update_fromQuery(value);
-                              widget.filterLists();
+                              widget.filterLists(homeController);
                               // setState(() {
                               //   from_query = value;
                               //   filterLists();
@@ -85,7 +85,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         child: SizedBox(
                           height: 40,
                           child: TextFormField(
-                            controller: homeController.HomeModel.toController,
+                            controller: homeController.homeModel.toController,
                             textAlign: TextAlign.center,
                             style: const TextStyle(fontSize: 10, color: Colors.white),
                             decoration: InputDecoration(
@@ -105,7 +105,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             ),
                             onChanged: (value) {
                               homeController.update_toQuery(value);
-                              widget.filterLists();
+                              widget.filterLists(homeController);
                               // setState(() {
                               //   to_query = value;
                               //   filterLists();
@@ -146,7 +146,7 @@ class _MyHomePageState extends State<MyHomePage> {
               Expanded(
                 // height: 500, // Limit the height for scrolling
                 child: Obx(() {
-                  return TabBarView(children: [pickup_widget(context, homeController.HomeModel.filteredPickupList), Drop_widget(context, homeController.HomeModel.filteredDropList)]);
+                  return TabBarView(children: [pickup_widget(context, homeController.homeModel.filteredPickupList), Drop_widget(context, homeController.homeModel.filteredDropList)]);
                 }),
               ),
             ],
@@ -158,9 +158,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Widget pickup_widget(BuildContext context, List<Map<String, dynamic>> pickupList) {
     return ListView.builder(
-      itemCount: homeController.HomeModel.filteredPickupList.length,
+      itemCount: homeController.homeModel.filteredPickupList.length,
       itemBuilder: (context, index) {
-        final pickup = homeController.HomeModel.filteredPickupList[index];
+        final pickup = homeController.homeModel.filteredPickupList[index];
         return Card(
           margin: const EdgeInsets.only(bottom: 8),
           child: Container(
@@ -184,9 +184,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Widget Drop_widget(BuildContext context, List<Map<String, dynamic>> dropList) {
     return ListView.builder(
-      itemCount: homeController.HomeModel.filteredDropList.length,
+      itemCount: homeController.homeModel.filteredDropList.length,
       itemBuilder: (context, index) {
-        final drop = homeController.HomeModel.filteredDropList[index];
+        final drop = homeController.homeModel.filteredDropList[index];
         return Card(
           margin: const EdgeInsets.only(bottom: 8),
           child: Container(

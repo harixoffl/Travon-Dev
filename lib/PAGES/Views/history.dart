@@ -31,15 +31,20 @@ class _HistoryPageState extends State<HistoryPage> {
             Expanded(
               child: Obx(() {
                 return ListView.builder(
-                itemCount:
-                    historyController.historyConstants.historyData.length,
-                itemBuilder: (context, index) {
-                  final item=  historyController.historyConstants.historyData[index];
-                  return Dismissible(
-                    key: Key(
-                      historyController.historyConstants.historyData[index].hashCode.toString(),
-                    ),
-                     direction: DismissDirection.endToStart,
+                  itemCount:
+                      historyController.historyConstants.historyData.length,
+                  itemBuilder: (context, index) {
+                    final item =
+                        historyController.historyConstants.historyData[index];
+                    return Dismissible(
+                      key: Key(
+                        historyController
+                            .historyConstants
+                            .historyData[index]
+                            .hashCode
+                            .toString(),
+                      ),
+                      direction: DismissDirection.endToStart,
                       background: Container(
                         alignment: Alignment.centerRight,
                         padding: const EdgeInsets.only(right: 20),
@@ -47,9 +52,13 @@ class _HistoryPageState extends State<HistoryPage> {
                           color: Colors.red,
                           borderRadius: BorderRadius.circular(10),
                         ),
-                        child: const Icon(Icons.delete, color: Colors.white, size: 20),
-                      ), 
-                       confirmDismiss: (direction) async {
+                        child: const Icon(
+                          Icons.delete,
+                          color: Colors.white,
+                          size: 20,
+                        ),
+                      ),
+                      confirmDismiss: (direction) async {
                         return await showDialog<bool>(
                           context: context,
                           builder: (context) => AlertDialog(
@@ -87,7 +96,7 @@ class _HistoryPageState extends State<HistoryPage> {
                           ),
                         );
                       },
-                       onDismissed: (direction) {
+                      onDismissed: (direction) {
                         historyController.removeHistoryData(index);
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
@@ -102,276 +111,172 @@ class _HistoryPageState extends State<HistoryPage> {
                           ),
                         );
                       },
-                       child:  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Primary_colors.Dark,
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Row(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Primary_colors.Dark,
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Padding(
-                                padding: const EdgeInsets.only(left: 8.0),
-                                child: CircleAvatar(
-                                  backgroundColor: kgrey,
-                                  radius: 20,
-                                  child: const Icon(
-                                    Icons.person,
-                                    color: Colors.grey,
+                              Row(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 8.0),
+                                    child: CircleAvatar(
+                                      backgroundColor: kgrey,
+                                      radius: 20,
+                                      child: const Icon(
+                                        Icons.person,
+                                        color: Colors.grey,
+                                      ),
+                                    ),
                                   ),
-                                ),
-                              ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          item['name']!,
+                                          style: const TextStyle(
+                                            color: Primary_colors.Color1,
+                                            fontSize: 12,
+                                          ),
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                        Text(
+                                          '${item['fromLocation']} → ${item['toLocation']} \n${item['date']}',
+                                          style: const TextStyle(
+                                            fontSize: 10,
+                                            color: Primary_colors.Color7,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ), // Container(
                               Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      item['name']!,
-                                      style: const TextStyle(
-                                        color: Primary_colors.Color1,
-                                        fontSize: 12,
-                                      ),
-                                      overflow: TextOverflow.ellipsis,
-                                    ),
-                                    Text(
-                                      '${item['fromLocation']} → ${item['toLocation']} \n${item['date']}',
-                                      style: const TextStyle(
-                                        fontSize: 10,
-                                        color: Primary_colors.Color7,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ), // Container(
-                          Padding(
-                            padding: const EdgeInsets.all(20.0),
-                            child: GestureDetector(
-                              onTap: () {
-                                showDialog(
-                                  context: context,
-                                  builder: (BuildContext context) {
-                                    return AlertDialog(
-                                      title: const Text("Details"),
-                                      content: SizedBox(
-                                        height: 100,
-                                        child: Column(
-                                          // mainAxisSize: MainAxisSize.min,
-                                          children: [
-                                            Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.spaceEvenly,
+                                padding: const EdgeInsets.all(20.0),
+                                child: GestureDetector(
+                                  onTap: () {
+                                    showDialog(
+                                      context: context,
+                                      builder: (BuildContext context) {
+                                        return AlertDialog(
+                                          title: const Text("Details"),
+                                          content: SizedBox(
+                                            height: 100,
+                                            child: Column(
+                                              // mainAxisSize: MainAxisSize.min,
                                               children: [
-                                                Column(
+                                                Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceEvenly,
                                                   children: [
-                                                    const Icon(
-                                                      Icons.location_on,
-                                                      color: Colors.red,
-                                                    ), // From point
-                                                    const SizedBox(
-                                                      height: 8,
-                                                    ), // Space between point and text
-                                                    Text(
-                                                      item['fromLocation']!,
-                                                      style: const TextStyle(
-                                                        fontSize: 16,
-                                                      ),
+                                                    Column(
+                                                      children: [
+                                                        const Icon(
+                                                          Icons.location_on,
+                                                          color: Colors.red,
+                                                        ), // From point
+                                                        const SizedBox(
+                                                          height: 8,
+                                                        ), // Space between point and text
+                                                        Text(
+                                                          item['fromLocation']!,
+                                                          style:
+                                                              const TextStyle(
+                                                                fontSize: 16,
+                                                              ),
+                                                        ),
+                                                      ],
                                                     ),
-                                                  ],
-                                                ),
-                                                Image.asset(
-                                                  'assets/images/arrow.png',
-                                                  width: 25,
-                                                  height: 30,
-                                                  // color: Colors.grey,
-                                                ),
-                                                Column(
-                                                  children: [
-                                                    const Icon(
-                                                      Icons.location_on,
-                                                      color: Colors.green,
-                                                    ), // To point
-                                                    const SizedBox(
-                                                      height: 8,
-                                                    ), // Space between point and text
-                                                    Text(
-                                                      item['toLocation']!,
-                                                      style: const TextStyle(
-                                                        fontSize: 16,
-                                                      ),
+                                                    Image.asset(
+                                                      'assets/images/arrow.png',
+                                                      width: 25,
+                                                      height: 30,
+                                                      // color: Colors.grey,
+                                                    ),
+                                                    Column(
+                                                      children: [
+                                                        const Icon(
+                                                          Icons.location_on,
+                                                          color: Colors.green,
+                                                        ), // To point
+                                                        const SizedBox(
+                                                          height: 8,
+                                                        ), // Space between point and text
+                                                        Text(
+                                                          item['toLocation']!,
+                                                          style:
+                                                              const TextStyle(
+                                                                fontSize: 16,
+                                                              ),
+                                                        ),
+                                                      ],
                                                     ),
                                                   ],
                                                 ),
                                               ],
                                             ),
+                                          ),
+                                          actions: [
+                                            TextButton(
+                                              child: const Text("Close"),
+                                              onPressed: () {
+                                                Navigator.of(context).pop();
+                                              },
+                                            ),
                                           ],
-                                        ),
-                                      ),
-                                      actions: [
-                                        TextButton(
-                                          child: const Text("Close"),
-                                          onPressed: () {
-                                            Navigator.of(context).pop();
-                                          },
-                                        ),
-                                      ],
+                                        );
+                                      },
                                     );
                                   },
-                                );
-                              },
-                              child: MouseRegion(
-                                cursor: SystemMouseCursors
-                                    .click, // 👈 shows hand cursor on hover
-                                child: GestureDetector(
-                                  onTap: () {
-                                    // 👉 Your onClick function here
-                                  showViewHistory(context);
-                                  },
-                                  child: const Text(
-                                    'View',
-                                    style: TextStyle(
-                                      color: Primary_colors.Color3,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 10,
-                                      // optional: to show it's clickable
+                                  child: MouseRegion(
+                                    cursor: SystemMouseCursors
+                                        .click, // 👈 shows hand cursor on hover
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        // 👉 Your onClick function here
+                                        showViewHistory(context);
+                                      },
+                                      child: const Text(
+                                        'View',
+                                        style: TextStyle(
+                                          color: Primary_colors.Color3,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 10,
+                                          // optional: to show it's clickable
+                                        ),
+                                      ),
                                     ),
                                   ),
                                 ),
                               ),
-                            ),
+                              // // ElevatedButton(
+                              // //   style: const ButtonStyle(backgroundColor: WidgetStatePropertyAll(kPrimaryColor), padding: WidgetStatePropertyAll(EdgeInsets.only(top: 0, bottom: 0))),
+                              // //   onPressed: () {
+                              // //     // );
+                              // //   },
+                              // //   child: const Text(
+                              // //     "View",
+                              // //     style: TextStyle(color: Colors.white, fontSize: 10),
+                              // //   ),
+                              // ),
+                            ],
                           ),
-                          // // ElevatedButton(
-                          // //   style: const ButtonStyle(backgroundColor: WidgetStatePropertyAll(kPrimaryColor), padding: WidgetStatePropertyAll(EdgeInsets.only(top: 0, bottom: 0))),
-                          // //   onPressed: () {
-                          // //     // );
-                          // //   },
-                          // //   child: const Text(
-                          // //     "View",
-                          // //     style: TextStyle(color: Colors.white, fontSize: 10),
-                          // //   ),
-                          // ),
-                        ],
+                        ),
                       ),
-                    ),
-                  ),
-                     );
-                
-                 
-
-                  // Card(
-                  //   color: kPrimaryLightColor,
-                  //   margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
-                  //   child: ListTile(
-                  //     leading: CircleAvatar(
-                  //       backgroundColor: kgrey,
-                  //       radius: 30,
-                  //       child: const Icon(
-                  //         Icons.person,
-                  //         color: Colors.grey,
-                  //         size: 30,
-                  //       ),
-                  //     ),
-                  //     title: Text(
-                  //       item['name']!,
-                  //       style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.grey, fontSize: 14),
-                  //       overflow: TextOverflow.ellipsis,
-                  //     ),
-                  //     subtitle: Column(
-                  //       crossAxisAlignment: CrossAxisAlignment.start,
-                  //       children: [
-                  //         // Text(
-                  //         //   'Date: ${item['date']}',
-                  //         //   style: const TextStyle(color: Color.fromARGB(255, 94, 93, 93), fontSize: 10),
-                  //         // ),
-                  //         // const SizedBox(height: 4),
-                  // Text(
-                  //   '${item['fromLocation']} → ${item['toLocation']} \n${item['date']}',
-                  //   style: const TextStyle(fontSize: 10),
-                  // ),
-                  //         // Text(
-                  //         //   'From: ${item['fromLocation']}',
-                  //         //   style: const TextStyle(color: Color.fromARGB(255, 94, 93, 93), fontSize: 10),
-                  //         // ),
-                  //         // Text(
-                  //         //   'To: ${item['toLocation']}',
-                  //         //   style: const TextStyle(color: Color.fromARGB(255, 94, 93, 93), fontSize: 10),
-                  //         // ),
-                  //       ],
-                  //     ),
-                  //     trailing:
-                  // ElevatedButton(
-                  //       style: const ButtonStyle(backgroundColor: WidgetStatePropertyAll(kPrimaryColor)),
-                  //       onPressed: () {
-                  //         showDialog(
-                  //           context: context,
-                  //           builder: (BuildContext context) {
-                  //             return AlertDialog(
-                  //               title: const Text("Details"),
-                  //               content: Column(
-                  //                 // mainAxisSize: MainAxisSize.min,
-                  //                 children: [
-                  //                   Row(
-                  //                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  //                     children: [
-                  //                       Column(
-                  //                         children: [
-                  //                           const Icon(Icons.location_on, color: Colors.red), // From point
-                  //                           const SizedBox(height: 8), // Space between point and text
-                  //                           Text(
-                  //                             item['fromLocation']!,
-                  //                             style: const TextStyle(fontSize: 16),
-                  //                           ),
-                  //                         ],
-                  //                       ),
-                  //                       Image.asset(
-                  //                         'assets/images/arrow.png',
-                  //                         width: 25,
-                  //                         height: 30,
-                  //                         // color: Colors.grey,
-                  //                       ),
-                  //                       Column(
-                  //                         children: [
-                  //                           const Icon(Icons.location_on, color: Colors.green), // To point
-                  //                           const SizedBox(height: 8), // Space between point and text
-                  //                           Text(
-                  //                             item['toLocation']!,
-                  //                             style: const TextStyle(fontSize: 16),
-                  //                           ),
-                  //                         ],
-                  //                       ),
-                  //                     ],
-                  //                   ),
-                  //                 ],
-                  //               ),
-                  //               actions: [
-                  //                 TextButton(
-                  //                   child: const Text("Close"),
-                  //                   onPressed: () {
-                  //                     Navigator.of(context).pop();
-                  //                   },
-                  //                 ),
-                  //               ],
-                  //             );
-                  //           },
-                  //         );
-                  //       },
-                  //       child: const Text(
-                  //         "View",
-                  //         style: TextStyle(color: Colors.white),
-                  //       ),
-                  //     ),
-                  //   ),
-                  // );
-                },
-              );
+                    );
+                  },
+                );
               }),
-              
             ),
           ],
         ),
@@ -380,105 +285,138 @@ class _HistoryPageState extends State<HistoryPage> {
   }
 }
 
- void showViewHistory(BuildContext context) {
-    // final GlobalKey _invoiceCopyKey = GlobalKey();
-    // final GlobalKey _voucherCopyKey = GlobalKey();
-    // final GlobalKey _GSTcopyKey = GlobalKey();
-    showDialog(
-      context: context,
-      barrierDismissible: true,
-      builder: (context) {
-        return Dialog(
-          backgroundColor: Colors.transparent,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-          insetPadding: EdgeInsets.all(20),
-          child: Container(
-            width: 250,
-            // padding: EdgeInsets.all(16),
-            // constraints: BoxConstraints(minWidth: 300, maxWidth: 500),
-            decoration: BoxDecoration(
-              color: Primary_colors.Light,
-              borderRadius: BorderRadius.circular(16),
-              boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.2), blurRadius: 20, offset: const Offset(0, 10))],
-            ),
-            // child: SingleChildScrollView(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Container(
-                  padding: const EdgeInsets.all(4),
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(colors: [Primary_colors.Color3, Primary_colors.Color3.withOpacity(0.8)], begin: Alignment.topLeft, end: Alignment.bottomRight),
-                    borderRadius: const BorderRadius.only(topLeft: Radius.circular(16), topRight: Radius.circular(16)),
-                  ),
-                  child: Row(
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.all(4),
-                        decoration: const BoxDecoration(
-                          // color: Colors.white.withOpacity(0.2),
-                          shape: BoxShape.circle,
-                        ),
-                        child: const Icon(Icons.history, color: Colors.green, size: 26),
-                      ),
-                      const SizedBox(width: 5),
-                      const Text(
-                        'Detailed History',
-                        style: TextStyle(color: Colors.white, fontSize: Primary_font_size.Text8, fontWeight: FontWeight.bold, letterSpacing: 1.2),
-                      ),
+void showViewHistory(BuildContext context) {
+  // final GlobalKey _invoiceCopyKey = GlobalKey();
+  // final GlobalKey _voucherCopyKey = GlobalKey();
+  // final GlobalKey _GSTcopyKey = GlobalKey();
+  showDialog(
+    context: context,
+    barrierDismissible: true,
+    builder: (context) {
+      return Dialog(
+        backgroundColor: Colors.transparent,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        // insetPadding: EdgeInsets.all(20),
+        child: Container(
+          width: 250,
+           padding: EdgeInsets.all(8),
+          // constraints: BoxConstraints(minWidth: 300, maxWidth: 500),
+          decoration: BoxDecoration(
+            color: Primary_colors.Light,
+            borderRadius: BorderRadius.circular(16),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.2),
+                blurRadius: 20,
+                offset: const Offset(0, 10),
+              ),
+            ],
+          ),
+          // child: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Container(
+                padding: const EdgeInsets.all(4),
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [
+                      Primary_colors.Color3,
+                      Primary_colors.Color3.withOpacity(0.8),
                     ],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                  ),
+                  borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(16),
+                    topRight: Radius.circular(16),
                   ),
                 ),
-                const SizedBox(height: 20),
-                Container(
-                  margin: const EdgeInsets.only(right: 16, left: 16),
-                  padding: const EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                    color: Primary_colors.Dark,
-                    borderRadius: BorderRadius.circular(12),
-                    border: Border.all(color: Primary_colors.Dark, width: 1),
-                  ),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Flexible(
-                        // ✅ use Flexible inside scroll views
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              children: [
-                                Container(
-                                  padding: const EdgeInsets.all(4),
-                                  decoration: BoxDecoration(color: Primary_colors.Color3.withOpacity(0.1), shape: BoxShape.circle),
-                                  child: const CircleAvatar(
-                                    radius: 20,
-                                    backgroundColor: Primary_colors.Color3,
-                                    child: Icon(Icons.person, color: Colors.white, size: 20),
+                child: Row(
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.all(4),
+                      decoration: const BoxDecoration(
+                        // color: Colors.white.withOpacity(0.2),
+                        shape: BoxShape.circle,
+                      ),
+                      child: const Icon(
+                        Icons.history,
+                        color: Colors.green,
+                        size: 26,
+                      ),
+                    ),
+                    const SizedBox(width: 5),
+                    const Text(
+                      'Detailed History',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: Primary_font_size.Text8,
+                        fontWeight: FontWeight.bold,
+                        letterSpacing: 1.2,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 20),
+              Container(
+                margin: const EdgeInsets.only(right: 16, left: 16),
+                padding: const EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  color: Primary_colors.Dark,
+                  borderRadius: BorderRadius.circular(12),
+                  border: Border.all(color: Primary_colors.Dark, width: 1),
+                ),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Flexible(
+                      // ✅ use Flexible inside scroll views
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                              Container(
+                                padding: const EdgeInsets.all(4),
+                                decoration: BoxDecoration(
+                                  color: Primary_colors.Color3.withOpacity(0.1),
+                                  shape: BoxShape.circle,
+                                ),
+                                child: const CircleAvatar(
+                                  radius: 15,
+                                  backgroundColor: Primary_colors.Color3,
+                                  child: Icon(
+                                    Icons.person,
+                                    color: Colors.white,
+                                    size: 20,
                                   ),
                                 ),
-                                const SizedBox(width: 12),
-                               
-                              ],
-                            ),
-                            const SizedBox(height: 12),
-                            
-                          ],
-                        ),
+                              ),
+                              const SizedBox(width: 12),
+                            ],
+                          ),
+                          const SizedBox(height: 12),
+                        ],
                       ),
+                    ),
 
-                      Container(height: 250, width: 0.5, color: Colors.grey[500], margin: const EdgeInsets.all(20)),
-                      // const SizedBox(height: 15,),
-                    
-                    ],
-                  ),
+                    // Container(
+                    //   height: 250,
+                    //   width: 0.5,
+                    //   color: Colors.grey[500],
+                    //   margin: const EdgeInsets.all(20),
+                    // ),
+
+                    // const SizedBox(height: 15,),
+                  ],
                 ),
-               
-                    
-              ],
-            ),
+              ),
+            ],
           ),
-        );
-      },
-    );
-  }
+        ),
+      );
+    },
+  );
+}
